@@ -1,5 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IStreamer } from "../interfaces";
+import { createStreamer } from "../api/streamers";
+import { useMutation } from "react-query";
 
 enum StreamerPlatform {
   TWITCH = "twitch",
@@ -17,14 +19,10 @@ const AddStreamerForm = () => {
   } = useForm<IStreamer>();
   const onSubmit: SubmitHandler<IStreamer> = (data) => {
     console.log(data);
-    // mutation.mutate({data});
+    mutation.mutate(data);
   };
 
-  // const mutation = useMutation<IStreamer, Error>(
-  //   (newStreamer) => {
-  //     return axios.post(URL, newStreamer);
-  //   }
-  // );
+  const mutation = useMutation<IStreamer, Error, IStreamer>(createStreamer);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

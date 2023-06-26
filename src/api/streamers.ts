@@ -1,20 +1,5 @@
 import { URL } from "../constants";
-
-export const createStreamer = async () => {
-  const response = await fetch(URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: "Demonzz",
-      platform: "Twitch",
-      desc: "Amrah detonuj",
-    }),
-  });
-
-  return response.json();
-};
+import { IStreamer } from "../interfaces";
 
 export const getStreamers = async () => {
   const res = await fetch(URL);
@@ -29,4 +14,47 @@ export const getStreamer = async (id: string | undefined) => {
     return res.json();
   }
   throw new Error("invalid id");
+};
+
+export const createStreamer = async (streamer: IStreamer) => {
+  const res = await fetch(URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: streamer.name,
+      platform: streamer.platform,
+      desc: streamer.desc,
+    }),
+  });
+
+  if (res.ok) {
+    return res.json();
+  }
+
+  throw new Error("User not created");
+};
+
+export const updateStreamer = async ({
+  id,
+  vote,
+}: {
+  id: string;
+  vote: string;
+}) => {
+  const res = await fetch(`${URL}/${id}/vote`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      vote: vote,
+    }),
+  });
+  if (res.ok) {
+    return res.json();
+  }
+
+  throw new Error("User Not updated");
 };
