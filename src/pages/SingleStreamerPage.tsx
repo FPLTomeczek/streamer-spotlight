@@ -2,8 +2,9 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { IStreamer } from "../interfaces";
 import { getStreamer } from "../api/streamers";
+import SingleStreamer from "../components/single-streamer/SingleStreamer";
 
-const SingleStreamer = () => {
+const SingleStreamerPage = () => {
   const { id } = useParams();
 
   const { isLoading, isError, data, error } = useQuery<IStreamer, Error>(
@@ -22,7 +23,7 @@ const SingleStreamer = () => {
     return <p>{error.message}</p>;
   }
 
-  return <div>{data?.name}</div>;
+  return <SingleStreamer streamer={data} />;
 };
 
-export default SingleStreamer;
+export default SingleStreamerPage;

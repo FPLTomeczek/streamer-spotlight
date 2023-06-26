@@ -1,14 +1,15 @@
-import styled from "styled-components";
 import { updateStreamer } from "../../api/streamers";
 import { IStreamer } from "../../interfaces";
 import { useMutation, useQueryClient } from "react-query";
 import streamerImg from "../../assets/images/mammon.jpg";
 import PlatformIcon from "../PlatformIcon";
+import { StreamerStyled } from "../../styles/streamer-list/StreamerList.styled";
+import { Link } from "react-router-dom";
 
 const Streamer = ({ streamer }: { streamer: IStreamer }) => {
   const queryClient = useQueryClient();
 
-  const { _id, name, platform, upvotes, downvotes, desc } = streamer;
+  const { _id, name, platform, upvotes, downvotes } = streamer;
 
   const mutation = useMutation<IStreamer, Error, { id: string; vote: string }>(
     updateStreamer,
@@ -25,9 +26,13 @@ const Streamer = ({ streamer }: { streamer: IStreamer }) => {
 
   return (
     <StreamerStyled>
-      <img src={streamerImg} alt="streamer" />
-      <h2>{name}</h2>
-      <PlatformIcon platform={platform} />
+      <Link to={`/streamers/${_id}`}>
+        <img src={streamerImg} alt="streamer" />
+      </Link>
+      <div className="streamer-header">
+        <h2>{name}</h2>
+        <PlatformIcon platform={platform} />
+      </div>
       <div className="votes">
         <div className="upvotes">
           <button
@@ -45,33 +50,8 @@ const Streamer = ({ streamer }: { streamer: IStreamer }) => {
           <p>{downvotes}</p>
         </div>
       </div>
-      <p>{desc}</p>
     </StreamerStyled>
   );
 };
 
-const StreamerStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .votes {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-  .upvotes,
-  .downvotes {
-    display: flex;
-    gap: 0.25rem;
-  }
-  .votes i {
-    font-size: 2rem;
-  }
-  .upvotes i {
-    color: green;
-  }
-  .downvotes i {
-    color: red;
-  }
-`;
 export default Streamer;

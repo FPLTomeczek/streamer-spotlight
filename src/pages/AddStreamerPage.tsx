@@ -1,6 +1,6 @@
 import AddStreamerForm from "../components/streamer-form/AddStreamerForm";
 
-const AddStreamer = () => {
+const AddStreamerPage = () => {
   return (
     <>
       <AddStreamerForm />
@@ -8,4 +8,4 @@ const AddStreamer = () => {
   );
 };
 
-export default AddStreamer;
+export default AddStreamerPage;

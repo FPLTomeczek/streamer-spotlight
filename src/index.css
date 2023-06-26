@@ -20,3 +20,23 @@ button {
 i {
   font-size: 2rem;
 }
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn-primary {
+  background-color: black;
+  font-size: 1rem;
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+p[role="alert"] {
+  color: red;
+}
