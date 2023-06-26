@@ -1,4 +1,4 @@
-import AddStreamerForm from "../components/AddStreamerForm";
+import AddStreamerForm from "../components/streamer-form/AddStreamerForm";
 
 const AddStreamer = () => {
   return (

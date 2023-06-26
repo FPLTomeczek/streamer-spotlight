@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { IStreamer } from "../interfaces";
-import { createStreamer } from "../api/streamers";
+import { IStreamer } from "../../interfaces";
+import { createStreamer } from "../../api/streamers";
 import { useMutation } from "react-query";
 
 enum StreamerPlatform {

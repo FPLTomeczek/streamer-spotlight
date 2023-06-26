@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AddStreamer from "./pages/AddStreamer";
-import StreamerList from "./pages/StreamerList";
-import SingleStreamer from "./pages/SingleStreamer";
+import AddStreamer from "./pages/AddStreamerPage";
+import StreamerList from "./pages/StreamerListPage";
+import SingleStreamer from "./pages/SingleStreamerPage";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
