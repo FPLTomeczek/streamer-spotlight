@@ -9,7 +9,6 @@ export const getStreamers = async () => {
 export const getStreamer = async (id: string | undefined) => {
   if (typeof id === "string") {
     const res = await fetch(`${URL}/${id}`);
-    console.log(res);
 
     return res.json();
   }

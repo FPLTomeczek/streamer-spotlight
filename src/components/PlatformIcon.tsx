@@ -1,4 +1,4 @@
-import { StreamerPlatform } from "../enums/form";
+import { StreamerPlatform } from "../enums/streamerForm";
 
 const PlatformIcon = ({ platform }: { platform: StreamerPlatform }) => {
   switch (platform) {
