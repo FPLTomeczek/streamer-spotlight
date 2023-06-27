@@ -24,9 +24,7 @@ const AddStreamerForm = () => {
   } = useForm<IStreamer>();
 
   const onSubmit: SubmitHandler<IStreamer> = (data) => {
-    console.log(data);
     mutation.mutate(data);
-    console.log(mutation);
   };
 
   useEffect(() => {

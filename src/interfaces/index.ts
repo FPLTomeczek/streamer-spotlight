@@ -1,4 +1,4 @@
-import { StreamerPlatform } from "../enums/form";
+import { StreamerPlatform } from "../enums/streamerForm";
 
 export interface IStreamer {
   _id: string;
