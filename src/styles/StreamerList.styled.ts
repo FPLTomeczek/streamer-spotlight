@@ -4,7 +4,8 @@ export const StreamerListStyled = styled.section`
   padding: 1rem;
 `;
 
-export const StreamerStyled = styled.div`
+export const StreamerStyled = styled.div<{ isSingle: boolean }>`
+  padding: ${(props) => (props.isSingle ? "1rem" : "0")};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,6 +13,7 @@ export const StreamerStyled = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-top: ${(props) => (props.isSingle ? "6px" : "0")};
   }
   .streamer-header > h2 {
     margin: 0;

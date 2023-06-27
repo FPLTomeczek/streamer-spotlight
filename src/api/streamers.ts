@@ -36,7 +36,7 @@ export const createStreamer = async (streamer: IStreamer) => {
   throw new Error("User not created");
 };
 
-export const updateStreamer = async ({
+export const updateStreamerVote = async ({
   id,
   vote,
 }: {

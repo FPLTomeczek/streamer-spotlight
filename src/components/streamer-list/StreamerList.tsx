@@ -2,7 +2,8 @@ import { useQuery } from "react-query";
 import { IStreamer } from "../../interfaces";
 import { getStreamers } from "../../api/streamers";
 import Streamer from "../../components/streamer-list/Streamer";
-import { StreamerListStyled } from "../../styles/streamer-list/StreamerList.styled";
+import { StreamerListStyled } from "../../styles/StreamerList.styled";
+import Loading from "../Loading";
 
 const StreamerList = () => {
   const { isLoading, isError, error, data } = useQuery<IStreamer[], Error>(
@@ -11,7 +12,7 @@ const StreamerList = () => {
   );
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (isError) {
@@ -21,7 +22,9 @@ const StreamerList = () => {
   return (
     <StreamerListStyled>
       {data?.map((streamer) => {
-        return <Streamer streamer={streamer} key={streamer._id} />;
+        return (
+          <Streamer streamer={streamer} key={streamer._id} isSingle={false} />
+        );
       })}
     </StreamerListStyled>
   );

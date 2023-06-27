@@ -1,21 +1,27 @@
-import { updateStreamer } from "../../api/streamers";
+import { updateStreamerVote } from "../../api/streamers";
 import { IStreamer } from "../../interfaces";
 import { useMutation, useQueryClient } from "react-query";
 import streamerImg from "../../assets/images/mammon.jpg";
 import PlatformIcon from "../PlatformIcon";
-import { StreamerStyled } from "../../styles/streamer-list/StreamerList.styled";
+import { StreamerStyled } from "../../styles/StreamerList.styled";
 import { Link } from "react-router-dom";
 
-const Streamer = ({ streamer }: { streamer: IStreamer }) => {
+const Streamer = ({
+  streamer,
+  isSingle,
+}: {
+  streamer: IStreamer;
+  isSingle: boolean;
+}) => {
   const queryClient = useQueryClient();
 
-  const { _id, name, platform, upvotes, downvotes } = streamer;
+  const { _id, name, platform, upvotes, downvotes, desc } = streamer;
 
   const mutation = useMutation<IStreamer, Error, { id: string; vote: string }>(
-    updateStreamer,
+    updateStreamerVote,
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries("streamers");
+      onSuccess: (data) => {
+        queryClient.setQueryData(["streamer", { id: _id }], data);
       },
     }
   );
@@ -25,10 +31,14 @@ const Streamer = ({ streamer }: { streamer: IStreamer }) => {
   };
 
   return (
-    <StreamerStyled>
-      <Link to={`/streamers/${_id}`}>
+    <StreamerStyled isSingle={isSingle}>
+      {!isSingle ? (
+        <Link to={`/streamers/${_id}`}>
+          <img src={streamerImg} alt="streamer" />
+        </Link>
+      ) : (
         <img src={streamerImg} alt="streamer" />
-      </Link>
+      )}
       <div className="streamer-header">
         <h2>{name}</h2>
         <PlatformIcon platform={platform} />
@@ -50,6 +60,7 @@ const Streamer = ({ streamer }: { streamer: IStreamer }) => {
           <p>{downvotes}</p>
         </div>
       </div>
+      {isSingle ? <p>{desc}</p> : null}
     </StreamerStyled>
   );
 };

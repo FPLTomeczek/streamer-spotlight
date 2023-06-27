@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { IStreamer } from "../../interfaces";
 import { createStreamer } from "../../api/streamers";
 import { useMutation } from "react-query";
-import { AddStreamerFormStyled } from "../../styles/streamer-form/StreamerForm.styled";
+import { AddStreamerFormStyled } from "../../styles/StreamerForm.styled";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";

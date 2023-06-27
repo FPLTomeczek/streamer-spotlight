@@ -2,7 +2,8 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { IStreamer } from "../interfaces";
 import { getStreamer } from "../api/streamers";
-import SingleStreamer from "../components/single-streamer/SingleStreamer";
+import Streamer from "../components/streamer-list/Streamer";
+import Loading from "../components/Loading";
 
 const SingleStreamerPage = () => {
   const { id } = useParams();
@@ -16,14 +17,16 @@ const SingleStreamerPage = () => {
   );
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (isError) {
     return <p>{error.message}</p>;
   }
 
-  return <SingleStreamer streamer={data} />;
+  if (data) {
+    return <Streamer streamer={data} isSingle={true} />;
+  }
 };
 
 export default SingleStreamerPage;

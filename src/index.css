@@ -3,9 +3,12 @@
   line-height: 1.5;
   font-weight: 400;
 
+  --bg-color: #242424;
+  --text-color: rgba(255, 255, 255, 0.87);
+
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }
 
 body {
@@ -16,6 +19,7 @@ button {
   padding: 0;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 i {
   font-size: 2rem;
@@ -39,4 +43,30 @@ a {
 
 p[role="alert"] {
   color: red;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--text-color);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
