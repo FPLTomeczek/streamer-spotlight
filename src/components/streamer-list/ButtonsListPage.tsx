@@ -1,7 +1,7 @@
 import { Direction } from "../../enums/streamerList";
-import { UpdateListPageStyled } from "../../styles/StreamerList.styled";
+import { ButtonsListPageStyled } from "../../styles/StreamerList.styled";
 
-const UpdateListPage = ({
+const ButtonsListPage = ({
   page,
   setPage,
   maxPage,
@@ -30,7 +30,7 @@ const UpdateListPage = ({
   };
 
   return (
-    <UpdateListPageStyled>
+    <ButtonsListPageStyled>
       <button
         className="update-page-button"
         onClick={() => handleSettingPage(Direction.PREV)}
@@ -46,8 +46,8 @@ const UpdateListPage = ({
       >
         <i className="fa-solid fa-chevron-right"></i>
       </button>
-    </UpdateListPageStyled>
+    </ButtonsListPageStyled>
   );
 };
 
-export default UpdateListPage;
+export default ButtonsListPage;

@@ -1,13 +1,13 @@
-import StreamerList from "../components/streamer-list/StreamerList";
+import StreamerList from "./StreamerList";
 import { useState, useEffect } from "react";
-import UpdateListPage from "../components/streamer-list/UpdateListPage";
-import { STREAMERS_PER_PAGE } from "../constants";
-import { getStreamers } from "../api/streamers";
+import ButttonsListPage from "./ButtonsListPage";
+import { STREAMERS_PER_PAGE } from "../../constants";
+import { getStreamers } from "../../api/streamers";
 import { useQuery } from "react-query";
-import { IStreamer } from "../interfaces";
-import Loading from "../components/Loading";
+import { IStreamer } from "../../interfaces";
+import Loading from "../Loading";
 
-const StreamerListPage = () => {
+const StreamerListContainer = () => {
   const [page, setPage] = useState(1);
   const [streamersOnPage, setStreamersOnPage] = useState<IStreamer[]>([]);
 
@@ -41,10 +41,10 @@ const StreamerListPage = () => {
 
   return (
     <>
-      <UpdateListPage page={page} setPage={setPage} maxPage={maxPage} />
+      <ButttonsListPage page={page} setPage={setPage} maxPage={maxPage} />
       <StreamerList streamers={streamersOnPage} />
     </>
   );
 };
 
-export default StreamerListPage;
+export default StreamerListContainer;
