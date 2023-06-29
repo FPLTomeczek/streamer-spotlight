@@ -1,15 +1,7 @@
-import { Link } from "react-router-dom";
-import { ErrorPageStyled } from "../styles/Error.styled";
+import Error from "../components/Error";
 
 const ErrorPage = () => {
-  return (
-    <ErrorPageStyled>
-      <h1>Ooops... You have entered wrong page!</h1>
-      <button className="btn-primary">
-        <Link to="/">Home</Link>
-      </button>
-    </ErrorPageStyled>
-  );
+  return <Error msg={"Ooops... You have entered wrong page!"} />;
 };
 
 export default ErrorPage;

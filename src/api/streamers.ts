@@ -3,16 +3,23 @@ import { IStreamer } from "../interfaces";
 
 export const getStreamers = async () => {
   const res = await fetch(URL);
-  return res.json();
+  const data = await res.json();
+
+  return data;
 };
 
 export const getStreamer = async (id: string | undefined) => {
   if (typeof id === "string") {
     const res = await fetch(`${URL}/${id}`);
+    const data = await res.json();
 
-    return res.json();
+    console.log(data);
+
+    if (res.ok) {
+      return data;
+    }
+    throw new Error(data.msg);
   }
-  throw new Error("invalid id");
 };
 
 export const createStreamer = async (streamer: IStreamer) => {

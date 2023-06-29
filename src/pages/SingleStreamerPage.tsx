@@ -4,12 +4,13 @@ import { IStreamer } from "../interfaces";
 import { getStreamer } from "../api/streamers";
 import Streamer from "../components/streamer-list/Streamer";
 import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 const SingleStreamerPage = () => {
   const { id } = useParams();
 
   const { isLoading, isError, data, error } = useQuery<IStreamer, Error>(
-    ["streamer", id],
+    ["streamer", { id: id }],
     () => getStreamer(id),
     {
       enabled: !!id,
@@ -21,7 +22,7 @@ const SingleStreamerPage = () => {
   }
 
   if (isError) {
-    return <p>{error.message}</p>;
+    return <Error msg={error.message} />;
   }
 
   if (data) {

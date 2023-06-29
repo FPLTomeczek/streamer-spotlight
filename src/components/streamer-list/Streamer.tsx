@@ -15,13 +15,17 @@ const Streamer = ({
 }) => {
   const queryClient = useQueryClient();
 
-  const { _id, name, platform, upvotes, downvotes, desc } = streamer;
+  const { _id: id, name, platform, upvotes, downvotes, desc } = streamer;
 
   const mutation = useMutation<IStreamer, Error, { id: string; vote: string }>(
     updateStreamerVote,
     {
       onSuccess: (data) => {
-        queryClient.setQueryData(["streamer", { id: _id }], data);
+        if (isSingle) {
+          queryClient.setQueryData(["streamer", { id: id }], data);
+        } else {
+          queryClient.invalidateQueries("streamers");
+        }
       },
     }
   );
@@ -33,7 +37,7 @@ const Streamer = ({
   return (
     <StreamerStyled isSingle={isSingle}>
       {!isSingle ? (
-        <Link to={`/streamers/${_id}`}>
+        <Link to={`/streamers/${id}`}>
           <img src={streamerImg} alt="streamer" />
         </Link>
       ) : (
@@ -46,7 +50,7 @@ const Streamer = ({
       <div className="votes">
         <div className="upvotes">
           <button
-            onClick={() => handleVote(_id, "upvote")}
+            onClick={() => handleVote(id, "upvote")}
             aria-label="upvote streamer"
           >
             <i className="fa-regular fa-square-caret-up"></i>
@@ -54,7 +58,7 @@ const Streamer = ({
           <p>{upvotes}</p>
         </div>
         <div className="downvotes">
-          <button onClick={() => handleVote(_id, "downvote")}>
+          <button onClick={() => handleVote(id, "downvote")}>
             <i className="fa-regular fa-square-caret-down"></i>
           </button>
           <p>{downvotes}</p>
