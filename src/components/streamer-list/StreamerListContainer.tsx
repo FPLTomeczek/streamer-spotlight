@@ -18,12 +18,9 @@ const StreamerListContainer = () => {
 
   const loadImage = () => {
     streamerImagesLoaded.current += 1;
-    console.log("load");
 
     if (streamerImagesLoaded.current === streamersOnPage.length) {
       setisStreamerImagesLoading(false);
-      console.log("all images Loaded");
-
       streamerImagesLoaded.current = 0;
     }
   };

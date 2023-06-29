@@ -5,6 +5,8 @@ import streamerImg from "../../assets/images/mammon.jpg";
 import PlatformIcon from "../PlatformIcon";
 import { StreamerStyled } from "../../styles/StreamerList.styled";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Votes } from "../../enums/streamerList";
 
 const Streamer = ({
   streamer,
@@ -17,7 +19,7 @@ const Streamer = ({
 }) => {
   const queryClient = useQueryClient();
 
-  const { _id: id, name, platform, upvotes, downvotes, desc } = streamer;
+  const { _id: id, name, platform, upvote, downvote, desc } = streamer;
 
   const mutation = useMutation<IStreamer, Error, { id: string; vote: string }>(
     updateStreamerVote,
@@ -28,6 +30,18 @@ const Streamer = ({
         } else {
           queryClient.invalidateQueries("streamers");
         }
+      },
+      onError: (err) => {
+        toast.error(err.message, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       },
     }
   );
@@ -52,18 +66,18 @@ const Streamer = ({
       <div className="votes">
         <div className="upvotes">
           <button
-            onClick={() => handleVote(id, "upvote")}
+            onClick={() => handleVote(id, Votes.UPVOTE)}
             aria-label="upvote streamer"
           >
             <i className="fa-regular fa-square-caret-up"></i>
           </button>
-          <p>{upvotes}</p>
+          <p>{upvote}</p>
         </div>
         <div className="downvotes">
-          <button onClick={() => handleVote(id, "downvote")}>
+          <button onClick={() => handleVote(id, Votes.DOWNVOTE)}>
             <i className="fa-regular fa-square-caret-down"></i>
           </button>
-          <p>{downvotes}</p>
+          <p>{downvote}</p>
         </div>
       </div>
       {isSingle ? <p>{desc}</p> : null}

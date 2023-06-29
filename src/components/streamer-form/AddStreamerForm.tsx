@@ -6,6 +6,8 @@ import { AddStreamerFormStyled } from "../../styles/StreamerForm.styled";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
+import InputError from "./InputError";
+import { noWhitespaceRegex } from "./utils";
 
 enum StreamerPlatform {
   TWITCH = "twitch",
@@ -46,6 +48,18 @@ const AddStreamerForm = () => {
         theme: "colored",
       });
     },
+    onError: (err) => {
+      toast.error(err.message, {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    },
   });
 
   return (
@@ -54,17 +68,25 @@ const AddStreamerForm = () => {
         <div className="form-data-container">
           <label>Name</label>
           <input
-            {...register("name", { required: true })}
+            {...register(
+              "name"
+              // , {
+              //   required: true,
+              //   pattern: noWhitespaceRegex,
+              // }
+            )}
             className="name-input"
           />
-          {errors.name?.type === "required" && (
-            <p role="alert">Field Name is required</p>
-          )}
+          {errors.name?.type && <InputError type={errors.name.type} />}
         </div>
         <div className="form-data-container">
           <label>Platform</label>
           <select
-            {...register("platform", { required: true })}
+            {...register(
+              "platform"
+              // ,
+              //  { required: true }
+            )}
             className="platform-select"
           >
             <option value={StreamerPlatform.TWITCH}>Twitch</option>
@@ -76,10 +98,17 @@ const AddStreamerForm = () => {
         </div>
         <div className="form-data-container">
           <label>Description</label>
-          <textarea rows={10} {...register("desc", { required: true })} />
-          {errors.desc?.type === "required" && (
-            <p role="alert">Field Description is required</p>
-          )}
+          <textarea
+            rows={10}
+            {...register(
+              "desc"
+              // , {
+              //   required: true,
+              //   pattern: noWhitespaceRegex,
+              // }
+            )}
+          />
+          {errors.desc?.type && <InputError type={errors.desc.type} />}
         </div>
         <div className="btn-form-submit-container">
           <button type="submit" className="btn-primary">

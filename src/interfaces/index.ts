@@ -5,6 +5,6 @@ export interface IStreamer {
   name: string;
   platform: StreamerPlatform;
   desc: string;
-  upvotes: number;
-  downvotes: number;
+  upvote: number;
+  downvote: number;
 }

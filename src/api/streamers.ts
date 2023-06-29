@@ -13,8 +13,6 @@ export const getStreamer = async (id: string | undefined) => {
     const res = await fetch(`${URL}/${id}`);
     const data = await res.json();
 
-    console.log(data);
-
     if (res.ok) {
       return data;
     }
@@ -34,12 +32,12 @@ export const createStreamer = async (streamer: IStreamer) => {
       desc: streamer.desc,
     }),
   });
+  const data = await res.json();
 
   if (res.ok) {
-    return res.json();
+    return data;
   }
-
-  throw new Error("User not created");
+  throw new Error(data.msg);
 };
 
 export const updateStreamerVote = async ({
@@ -58,9 +56,10 @@ export const updateStreamerVote = async ({
       vote: vote,
     }),
   });
-  if (res.ok) {
-    return res.json();
-  }
+  const data = await res.json();
 
-  throw new Error("User Not updated");
+  if (res.ok) {
+    return data;
+  }
+  throw new Error(data.msg);
 };
