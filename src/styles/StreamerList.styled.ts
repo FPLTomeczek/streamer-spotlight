@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const StreamerListContainerStyled = styled.div<{
+  isImagesLoading: boolean;
+}>`
+  display: ${(props) => (props.isImagesLoading ? "none" : "block")};
+`;
+
 export const StreamerListStyled = styled.section`
   padding: 1rem;
 `;

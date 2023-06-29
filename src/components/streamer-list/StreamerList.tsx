@@ -4,14 +4,21 @@ import { StreamerListStyled } from "../../styles/StreamerList.styled";
 
 const StreamerList = ({
   streamers,
+  loadImage,
 }: {
   streamers: IStreamer[] | undefined;
+  loadImage: () => void;
 }) => {
   return (
     <StreamerListStyled>
       {streamers?.map((streamer) => {
         return (
-          <Streamer streamer={streamer} key={streamer._id} isSingle={false} />
+          <Streamer
+            streamer={streamer}
+            key={streamer._id}
+            isSingle={false}
+            loadImage={loadImage}
+          />
         );
       })}
     </StreamerListStyled>

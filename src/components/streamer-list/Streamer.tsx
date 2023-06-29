@@ -9,9 +9,11 @@ import { Link } from "react-router-dom";
 const Streamer = ({
   streamer,
   isSingle,
+  loadImage,
 }: {
   streamer: IStreamer;
   isSingle: boolean;
+  loadImage: () => void;
 }) => {
   const queryClient = useQueryClient();
 
@@ -38,10 +40,10 @@ const Streamer = ({
     <StreamerStyled isSingle={isSingle}>
       {!isSingle ? (
         <Link to={`/streamers/${id}`}>
-          <img src={streamerImg} alt="streamer" />
+          <img src={streamerImg} alt="streamer" onLoad={loadImage} />
         </Link>
       ) : (
-        <img src={streamerImg} alt="streamer" />
+        <img src={streamerImg} alt="streamer" onLoad={loadImage} />
       )}
       <div className="streamer-header">
         <h2>{name}</h2>

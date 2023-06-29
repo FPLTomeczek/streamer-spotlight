@@ -1,20 +1,38 @@
 import StreamerList from "./StreamerList";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ButttonsListPage from "./ButtonsListPage";
 import { STREAMERS_PER_PAGE } from "../../constants";
 import { getStreamers } from "../../api/streamers";
 import { useQuery } from "react-query";
 import { IStreamer } from "../../interfaces";
 import Loading from "../Loading";
+import { StreamerListContainerStyled } from "../../styles/StreamerList.styled";
 
 const StreamerListContainer = () => {
   const [page, setPage] = useState(1);
+  const [isStreamerImagesLoading, setisStreamerImagesLoading] = useState(true);
+
+  const streamerImagesLoaded = useRef(0);
+
   const [streamersOnPage, setStreamersOnPage] = useState<IStreamer[]>([]);
 
-  const { isLoading, isError, error, data } = useQuery<IStreamer[], Error>(
-    "streamers",
-    getStreamers
-  );
+  const loadImage = () => {
+    streamerImagesLoaded.current += 1;
+    console.log("load");
+
+    if (streamerImagesLoaded.current === streamersOnPage.length) {
+      setisStreamerImagesLoading(false);
+      console.log("all images Loaded");
+
+      streamerImagesLoaded.current = 0;
+    }
+  };
+  const {
+    isLoading: isStreamersLoading,
+    isError,
+    error,
+    data,
+  } = useQuery<IStreamer[], Error>("streamers", getStreamers);
 
   useEffect(() => {
     const streamers = data?.slice(
@@ -31,7 +49,7 @@ const StreamerListContainer = () => {
       ? Math.ceil(data?.length / STREAMERS_PER_PAGE)
       : 0;
 
-  if (isLoading) {
+  if (isStreamersLoading) {
     return <Loading />;
   }
 
@@ -41,8 +59,11 @@ const StreamerListContainer = () => {
 
   return (
     <>
-      <ButttonsListPage page={page} setPage={setPage} maxPage={maxPage} />
-      <StreamerList streamers={streamersOnPage} />
+      <StreamerListContainerStyled isImagesLoading={isStreamerImagesLoading}>
+        <ButttonsListPage page={page} setPage={setPage} maxPage={maxPage} />
+        <StreamerList streamers={streamersOnPage} loadImage={loadImage} />
+      </StreamerListContainerStyled>
+      {isStreamerImagesLoading ? <Loading /> : null}
     </>
   );
 };
