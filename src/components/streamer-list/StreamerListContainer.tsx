@@ -24,6 +24,7 @@ const StreamerListContainer = () => {
       streamerImagesLoaded.current = 0;
     }
   };
+
   const {
     isLoading: isStreamersLoading,
     isError,

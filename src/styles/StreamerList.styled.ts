@@ -7,11 +7,24 @@ export const StreamerListContainerStyled = styled.div<{
 `;
 
 export const StreamerListStyled = styled.section`
-  padding: 1rem;
+  padding: 4rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: center;
+  max-width: 1500px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 769px) {
+    display: grid;
+    row-gap: 4rem;
+    column-gap: 0;
+    align-items: flex-start;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media screen and (min-width: 1201px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `;
 
 export const StreamerStyled = styled.div<{ isSingle: boolean }>`
@@ -23,7 +36,7 @@ export const StreamerStyled = styled.div<{ isSingle: boolean }>`
   max-width: 300px;
   border-radius: 1.5rem;
   gap: 0.25rem;
-  margin: ${(props) => (props.isSingle ? "0 auto " : "0")};
+  margin: 0 auto;
 
   .streamer-header {
     display: flex;
@@ -43,6 +56,7 @@ export const StreamerStyled = styled.div<{ isSingle: boolean }>`
     border-radius: 1rem;
   }
   .votes {
+    margin-top: 4px;
     display: flex;
     gap: 1rem;
   }

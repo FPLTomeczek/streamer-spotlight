@@ -6,6 +6,13 @@
   --bg-color: #242424;
   --text-color: rgba(255, 255, 255, 0.87);
 
+  /* breakpoints */
+  /* mobile <= 480px
+     tablet <= 768px
+     laptop <= 1200
+     xl > 1200
+  */
+
   color-scheme: light dark;
   color: var(--text-color);
   background-color: var(--bg-color);
