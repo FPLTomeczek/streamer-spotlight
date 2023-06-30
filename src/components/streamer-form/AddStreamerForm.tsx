@@ -1,13 +1,15 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IStreamer } from "../../interfaces";
 import { createStreamer } from "../../api/streamers";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { AddStreamerFormStyled } from "../../styles/StreamerForm.styled";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import InputError from "./InputError";
 import { noWhitespaceRegex } from "./utils";
+import { displayToast } from "../utils";
+import { Toast } from "../../enums/streamerForm";
 
 enum StreamerPlatform {
   TWITCH = "twitch",
@@ -25,6 +27,8 @@ const AddStreamerForm = () => {
     reset,
   } = useForm<IStreamer>();
 
+  const queryClient = useQueryClient();
+
   const onSubmit: SubmitHandler<IStreamer> = (data) => {
     mutation.mutate(data);
   };
@@ -37,28 +41,14 @@ const AddStreamerForm = () => {
 
   const mutation = useMutation<IStreamer, Error, IStreamer>(createStreamer, {
     onSuccess: () => {
-      toast.success("Streamer Successfully Added!", {
-        position: "top-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
+      queryClient.invalidateQueries("streamers");
+      displayToast({
+        msg: "Streamer Successfully Added!",
+        type: Toast.SUCCESS,
       });
     },
     onError: (err) => {
-      toast.error(err.message, {
-        position: "top-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      displayToast({ msg: err.message, type: Toast.ERROR });
     },
   });
 
@@ -68,26 +58,19 @@ const AddStreamerForm = () => {
         <div className="form-data-container">
           <label>Name</label>
           <input
-            {...register(
-              "name"
-              // , {
-              //   required: true,
-              //   pattern: noWhitespaceRegex,
-              // }
-            )}
-            className="name-input"
+            {...register("name", {
+              required: true,
+              pattern: noWhitespaceRegex,
+            })}
+            className="data-input"
           />
           {errors.name?.type && <InputError type={errors.name.type} />}
         </div>
         <div className="form-data-container">
           <label>Platform</label>
           <select
-            {...register(
-              "platform"
-              // ,
-              //  { required: true }
-            )}
-            className="platform-select"
+            {...register("platform", { required: true })}
+            className="data-input"
           >
             <option value={StreamerPlatform.TWITCH}>Twitch</option>
             <option value={StreamerPlatform.YOUTUBE}>Youtube</option>
@@ -100,13 +83,10 @@ const AddStreamerForm = () => {
           <label>Description</label>
           <textarea
             rows={10}
-            {...register(
-              "desc"
-              // , {
-              //   required: true,
-              //   pattern: noWhitespaceRegex,
-              // }
-            )}
+            {...register("desc", {
+              required: true,
+              pattern: noWhitespaceRegex,
+            })}
           />
           {errors.desc?.type && <InputError type={errors.desc.type} />}
         </div>

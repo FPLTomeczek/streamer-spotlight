@@ -34,6 +34,7 @@ const ButtonsListPage = ({
       <button
         className="update-page-button"
         onClick={() => handleSettingPage(Direction.PREV)}
+        disabled={page === 1}
         aria-label="previous page"
       >
         <i className="fa-solid fa-chevron-left"></i>
@@ -42,6 +43,7 @@ const ButtonsListPage = ({
       <button
         className="update-page-button"
         onClick={() => handleSettingPage(Direction.NEXT)}
+        disabled={page === maxPage}
         aria-label="next page"
       >
         <i className="fa-solid fa-chevron-right"></i>

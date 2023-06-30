@@ -7,8 +7,7 @@ export const AddStreamerFormStyled = styled.form`
     flex-direction: column;
     padding: 0.5rem 0;
   }
-  .name-input,
-  .platform-select {
+  .data-input {
     font-size: 1rem;
     padding: 0.4rem;
   }

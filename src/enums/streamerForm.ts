@@ -5,3 +5,8 @@ export enum StreamerPlatform {
   KICK = "kick",
   RUMBLE = "rumble",
 }
+
+export enum Toast {
+  SUCCESS = "success",
+  ERROR = "error",
+}

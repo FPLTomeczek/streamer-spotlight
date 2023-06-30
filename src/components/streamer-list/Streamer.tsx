@@ -5,8 +5,9 @@ import streamerImg from "../../assets/images/mammon.jpg";
 import PlatformIcon from "../PlatformIcon";
 import { StreamerStyled } from "../../styles/StreamerList.styled";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Votes } from "../../enums/streamerList";
+import { Toast } from "../../enums/streamerForm";
+import { displayToast } from "../utils";
 
 const Streamer = ({
   streamer,
@@ -32,16 +33,7 @@ const Streamer = ({
         }
       },
       onError: (err) => {
-        toast.error(err.message, {
-          position: "top-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        displayToast({ msg: err.message, type: Toast.ERROR });
       },
     }
   );
@@ -54,15 +46,26 @@ const Streamer = ({
     <StreamerStyled isSingle={isSingle}>
       {!isSingle ? (
         <Link to={`/streamers/${id}`}>
-          <img src={streamerImg} alt="streamer" onLoad={loadImage} />
+          <img
+            src={streamerImg}
+            alt="streamer"
+            className="streamer-img"
+            onLoad={loadImage}
+          />
         </Link>
       ) : (
-        <img src={streamerImg} alt="streamer" onLoad={loadImage} />
+        <img
+          src={streamerImg}
+          alt="streamer"
+          className="streamer-img"
+          onLoad={loadImage}
+        />
       )}
       <div className="streamer-header">
         <h2>{name}</h2>
         <PlatformIcon platform={platform} />
       </div>
+      <div className="underline"></div>
       <div className="votes">
         <div className="upvotes">
           <button
