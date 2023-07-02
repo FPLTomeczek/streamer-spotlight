@@ -2,15 +2,15 @@ import { StreamerPlatform } from "../enums/platform";
 
 const PlatformIcon = ({ platform }: { platform: StreamerPlatform }) => {
   switch (platform) {
-    case "twitch":
+    case StreamerPlatform.TWITCH:
       return <i className="fa-brands fa-twitch"></i>;
-    case "youtube":
+    case StreamerPlatform.YOUTUBE:
       return <i className="fa-brands fa-youtube"></i>;
-    case "tiktok":
+    case StreamerPlatform.TIKTOK:
       return <i className="fa-brands fa-tiktok"></i>;
-    case "kick":
+    case StreamerPlatform.KICK:
       return <i className="fa-brands fa-kickstarter"></i>;
-    case "rumble":
+    case StreamerPlatform.RUMBLE:
       return <i className="fa-solid fa-r"></i>;
     default:
       return <i className="fa-regular fa-circle"></i>;
