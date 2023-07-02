@@ -1,7 +1,13 @@
 import { ToastOptions, toast } from "react-toastify";
-import { Toast } from "../enums/streamerForm";
+import { ToastState } from "../streamers/enums/toastState";
 
-export const displayToast = ({ msg, type }: { msg: string; type: Toast }) => {
+export const displayToast = ({
+  msg,
+  type,
+}: {
+  msg: string;
+  type: ToastState;
+}) => {
   const options: ToastOptions = {
     position: "top-left",
     autoClose: 5000,
@@ -14,9 +20,9 @@ export const displayToast = ({ msg, type }: { msg: string; type: Toast }) => {
   };
 
   switch (type) {
-    case Toast.SUCCESS:
+    case ToastState.SUCCESS:
       return toast.success(msg, options);
-    case Toast.ERROR:
+    case ToastState.ERROR:
       return toast.error(msg, options);
     default:
       return toast.info(msg, options);

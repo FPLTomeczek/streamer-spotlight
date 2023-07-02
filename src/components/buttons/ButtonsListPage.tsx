@@ -1,5 +1,6 @@
-import { Direction } from "../../enums/streamerList";
-import { ButtonsListPageStyled } from "../../styles/StreamerList.styled";
+import { Direction } from "../../enums/direction";
+import { ButtonsListPageStyled } from "../../styles/streamers/StreamerList.styled";
+import DirectionButton from "./DirectionButton";
 
 const ButtonsListPage = ({
   page,
@@ -31,23 +32,17 @@ const ButtonsListPage = ({
 
   return (
     <ButtonsListPageStyled>
-      <button
-        className="update-page-button"
-        onClick={() => handleSettingPage(Direction.PREV)}
-        disabled={page === 1}
-        aria-label="previous page"
-      >
-        <i className="fa-solid fa-chevron-left"></i>
-      </button>
+      <DirectionButton
+        direction={Direction.PREV}
+        isDisabled={page === 1}
+        onClickFunc={() => handleSettingPage(Direction.PREV)}
+      />
       <p id="page-number">{page}</p>
-      <button
-        className="update-page-button"
-        onClick={() => handleSettingPage(Direction.NEXT)}
-        disabled={page === maxPage}
-        aria-label="next page"
-      >
-        <i className="fa-solid fa-chevron-right"></i>
-      </button>
+      <DirectionButton
+        direction={Direction.NEXT}
+        isDisabled={page === maxPage}
+        onClickFunc={() => handleSettingPage(Direction.NEXT)}
+      />
     </ButtonsListPageStyled>
   );
 };

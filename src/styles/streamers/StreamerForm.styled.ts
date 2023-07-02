@@ -14,6 +14,8 @@ export const AddStreamerFormStyled = styled.form`
   .data-input {
     font-size: 1rem;
     padding: 0.4rem;
+    background-color: var(--bg-color-light);
+    color: var(--text-color);
   }
   .btn-form-submit-container {
     display: flex;

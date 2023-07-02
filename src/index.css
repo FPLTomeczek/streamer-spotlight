@@ -4,6 +4,7 @@
   font-weight: 400;
 
   --bg-color: #242424;
+  --bg-color-light: rgb(80, 80, 80);
   --text-color: rgba(255, 255, 255, 0.87);
 
   /* breakpoints */
@@ -13,13 +14,13 @@
      xl > 1200
   */
 
-  color-scheme: light dark;
-  color: var(--text-color);
-  background-color: var(--bg-color);
+  /* color-scheme: light dark; */
 }
 
 body {
   margin: 0;
+  color: var(--text-color);
+  background-color: var(--bg-color);
 }
 
 button {
@@ -27,7 +28,21 @@ button {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  color: var(--text-color);
 }
+button:disabled {
+  color: var(--bg-color-light);
+  cursor: default;
+}
+
+.btn-primary {
+  background-color: black;
+  font-size: 1rem;
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
 i {
   font-size: 1.5rem;
 }
@@ -40,12 +55,8 @@ a {
   color: inherit;
 }
 
-.btn-primary {
-  background-color: black;
-  font-size: 1rem;
-  width: fit-content;
-  padding: 0.5rem;
-  border-radius: 8px;
+textarea {
+  resize: none;
 }
 
 p {

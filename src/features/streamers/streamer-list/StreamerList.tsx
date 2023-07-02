@@ -1,6 +1,6 @@
-import Streamer from "../../components/streamer-list/Streamer";
-import { IStreamer } from "../../interfaces";
-import { StreamerListStyled } from "../../styles/StreamerList.styled";
+import Streamer from "../streamer-item/Streamer";
+import { IStreamer } from "../interfaces";
+import { StreamerListStyled } from "../../../styles/streamers/StreamerList.styled";
 
 const StreamerList = ({
   streamers,

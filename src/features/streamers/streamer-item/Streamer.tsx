@@ -1,13 +1,13 @@
-import { updateStreamerVote } from "../../api/streamers";
-import { IStreamer } from "../../interfaces";
+import { updateStreamerVote } from "../services/streamers";
+import { IStreamer } from "../interfaces";
 import { useMutation, useQueryClient } from "react-query";
-import streamerImg from "../../assets/images/mammon.jpg";
-import PlatformIcon from "../PlatformIcon";
-import { StreamerStyled } from "../../styles/StreamerList.styled";
+import streamerImg from "../../../assets/images/mammon.jpg";
+import PlatformIcon from "../../../components/PlatformIcon";
+import { StreamerStyled } from "../../../styles/streamers/StreamerList.styled";
 import { Link } from "react-router-dom";
-import { Votes } from "../../enums/streamerList";
-import { Toast } from "../../enums/streamerForm";
-import { displayToast } from "../utils";
+import { Votes } from "../enums/votes";
+import { ToastState } from "../enums/toastState";
+import { displayToast } from "../../notifications/utils";
 
 const Streamer = ({
   streamer,
@@ -33,7 +33,7 @@ const Streamer = ({
         }
       },
       onError: (err) => {
-        displayToast({ msg: err.message, type: Toast.ERROR });
+        displayToast({ msg: err.message, type: ToastState.ERROR });
       },
     }
   );

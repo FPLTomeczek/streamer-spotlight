@@ -1,5 +1,5 @@
-import AddStreamerForm from "../components/streamer-form/AddStreamerForm";
-import StreamerListContainer from "../components/streamer-list/StreamerListContainer";
+import AddStreamerForm from "../features/streamers/streamer-form/AddStreamerForm";
+import StreamerListContainer from "../features/streamers/streamer-list/StreamerListContainer";
 
 const HomePage = () => {
   return (

@@ -1,12 +1,12 @@
 import StreamerList from "./StreamerList";
 import { useState, useEffect, useRef } from "react";
-import ButttonsListPage from "./ButtonsListPage";
-import { STREAMERS_PER_PAGE } from "../../constants";
-import { getStreamers } from "../../api/streamers";
+import ButttonsListPage from "../../../components/buttons/ButtonsListPage";
+import { STREAMERS_PER_PAGE } from "../../../constants";
+import { getStreamers } from "../services/streamers";
 import { useQuery } from "react-query";
-import { IStreamer } from "../../interfaces";
-import Loading from "../Loading";
-import { StreamerListContainerStyled } from "../../styles/StreamerList.styled";
+import { IStreamer } from "../interfaces";
+import Loading from "../../../components/Loading";
+import { StreamerListContainerStyled } from "../../../styles/streamers/StreamerList.styled";
 
 const StreamerListContainer = () => {
   const [page, setPage] = useState(1);

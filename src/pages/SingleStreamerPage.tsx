@@ -1,12 +1,12 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { IStreamer } from "../interfaces";
-import { getStreamer } from "../api/streamers";
-import Streamer from "../components/streamer-list/Streamer";
+import { IStreamer } from "../features/streamers/interfaces";
+import { getStreamer } from "../features/streamers/services/streamers";
+import Streamer from "../features/streamers/streamer-item/Streamer";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import { useState } from "react";
-import { SingleStreamerPageStyled } from "../styles/SingleStreamerStyled";
+import { SingleStreamerPageStyled } from "../styles/streamers/SingleStreamerStyled";
 
 const SingleStreamerPage = () => {
   const { id } = useParams();

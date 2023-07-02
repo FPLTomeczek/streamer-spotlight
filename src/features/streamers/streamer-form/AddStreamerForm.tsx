@@ -1,23 +1,16 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { IStreamer } from "../../interfaces";
-import { createStreamer } from "../../api/streamers";
+import { IStreamer } from "../interfaces";
+import { createStreamer } from "../services/streamers";
 import { useMutation, useQueryClient } from "react-query";
-import { AddStreamerFormStyled } from "../../styles/StreamerForm.styled";
-import { ToastContainer, toast } from "react-toastify";
+import { AddStreamerFormStyled } from "../../../styles/streamers/StreamerForm.styled";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import InputError from "./InputError";
 import { noWhitespaceRegex } from "./utils";
-import { displayToast } from "../utils";
-import { Toast } from "../../enums/streamerForm";
-
-enum StreamerPlatform {
-  TWITCH = "twitch",
-  YOUTUBE = "youtube",
-  TIKTOK = "tiktok",
-  KICK = "kick",
-  RUMBLE = "rumble",
-}
+import { displayToast } from "../../notifications/utils";
+import { ToastState } from "../enums/toastState";
+import { StreamerPlatform } from "../../../enums/platform";
 
 const AddStreamerForm = () => {
   const {
@@ -44,11 +37,11 @@ const AddStreamerForm = () => {
       queryClient.invalidateQueries("streamers");
       displayToast({
         msg: "Streamer Successfully Added!",
-        type: Toast.SUCCESS,
+        type: ToastState.SUCCESS,
       });
     },
     onError: (err) => {
-      displayToast({ msg: err.message, type: Toast.ERROR });
+      displayToast({ msg: err.message, type: ToastState.ERROR });
     },
   });
 
@@ -82,6 +75,7 @@ const AddStreamerForm = () => {
         <div className="form-data-container">
           <label>Description</label>
           <textarea
+            className="data-input"
             rows={10}
             {...register("desc", {
               required: true,
