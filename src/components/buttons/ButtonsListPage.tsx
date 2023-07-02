@@ -1,5 +1,5 @@
 import { Direction } from "../../enums/direction";
-import { ButtonsListPageStyled } from "../../styles/streamers/StreamerList.styled";
+import { ButtonsListPageStyled } from "../../styles/Buttons.styled";
 import DirectionButton from "./DirectionButton";
 
 const ButtonsListPage = ({

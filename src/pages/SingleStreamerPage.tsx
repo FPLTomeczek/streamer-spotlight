@@ -17,6 +17,7 @@ const SingleStreamerPage = () => {
     () => getStreamer(id),
     {
       enabled: !!id,
+      retry: 2,
     }
   );
 

@@ -40,7 +40,7 @@ button:disabled {
   font-size: 1rem;
   width: fit-content;
   padding: 0.5rem;
-  border-radius: 8px;
+  border-radius: 0.5rem;
 }
 
 i {
@@ -70,7 +70,7 @@ p[role="alert"] {
 .spinner-container {
   display: flex;
   justify-content: center;
-  margin-top: 4rem;
+  margin-top: 0.25rem;
 }
 
 .spinner {

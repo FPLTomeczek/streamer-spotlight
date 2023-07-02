@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AddStreamerPage, SingleStreamerPage, ErrorPage } from "./pages";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +14,6 @@ function App() {
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
       </BrowserRouter>
-      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }

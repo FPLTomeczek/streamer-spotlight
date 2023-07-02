@@ -6,7 +6,7 @@ import PlatformIcon from "../../../components/PlatformIcon";
 import { StreamerStyled } from "../../../styles/streamers/StreamerList.styled";
 import { Link } from "react-router-dom";
 import { Votes } from "../enums/votes";
-import { ToastState } from "../enums/toastState";
+import { ToastState } from "../../notifications/enums/toastState";
 import { displayToast } from "../../notifications/utils";
 
 const Streamer = ({

@@ -56,7 +56,7 @@ export const StreamerStyled = styled.div<{ isSingle: boolean }>`
     border-radius: 1rem;
   }
   .votes {
-    margin-top: 4px;
+    margin-top: 0.25rem;
     display: flex;
     gap: 1rem;
   }
@@ -79,25 +79,5 @@ export const StreamerStyled = styled.div<{ isSingle: boolean }>`
     width: 100%;
     height: 2px;
     background-color: var(--bg-color);
-  }
-`;
-
-export const ButtonsListPageStyled = styled.div`
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
-  #page-number {
-    margin: 0;
-  }
-  .update-page-button {
-    background-color: black;
-    border-radius: 5px;
-    padding: 0.5rem;
-  }
-  .fa-chevron-left,
-  .fa-chevron-right {
-    font-size: 1rem;
   }
 `;

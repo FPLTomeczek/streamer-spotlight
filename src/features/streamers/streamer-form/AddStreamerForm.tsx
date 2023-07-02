@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import InputError from "./InputError";
 import { noWhitespaceRegex } from "./utils";
 import { displayToast } from "../../notifications/utils";
-import { ToastState } from "../enums/toastState";
+import { ToastState } from "../../notifications/enums/toastState";
 import { StreamerPlatform } from "../../../enums/platform";
 
 const AddStreamerForm = () => {

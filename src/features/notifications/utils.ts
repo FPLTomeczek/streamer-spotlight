@@ -1,5 +1,6 @@
 import { ToastOptions, toast } from "react-toastify";
-import { ToastState } from "../streamers/enums/toastState";
+import { ToastState } from "./enums/toastState";
+import { TOAST_CLOSE_TIME_MS } from "./constants";
 
 export const displayToast = ({
   msg,
@@ -10,7 +11,7 @@ export const displayToast = ({
 }) => {
   const options: ToastOptions = {
     position: "top-left",
-    autoClose: 5000,
+    autoClose: TOAST_CLOSE_TIME_MS,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,

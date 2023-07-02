@@ -1,7 +1,7 @@
 import StreamerList from "./StreamerList";
 import { useState, useEffect, useRef } from "react";
 import ButttonsListPage from "../../../components/buttons/ButtonsListPage";
-import { STREAMERS_PER_PAGE } from "../../../constants";
+import { STREAMERS_PER_PAGE } from "../constants";
 import { getStreamers } from "../services/streamers";
 import { useQuery } from "react-query";
 import { IStreamer } from "../interfaces";
