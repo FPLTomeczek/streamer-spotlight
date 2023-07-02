@@ -20,7 +20,7 @@ const Streamer = ({
 }) => {
   const queryClient = useQueryClient();
 
-  const { _id: id, name, platform, upvote, downvote, desc } = streamer;
+  const { _id: id, name, platform, upvote, downvote } = streamer;
 
   const mutation = useMutation<IStreamer, Error, { id: string; vote: string }>(
     updateStreamerVote,
@@ -83,7 +83,6 @@ const Streamer = ({
           <p>{downvote}</p>
         </div>
       </div>
-      {isSingle ? <p>{desc}</p> : null}
     </StreamerStyled>
   );
 };

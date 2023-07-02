@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const AddStreamerFormStyled = styled.form`
   padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 600px;
   .form-data-container {
     display: flex;
     flex-direction: column;

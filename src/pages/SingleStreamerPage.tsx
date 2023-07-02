@@ -6,6 +6,7 @@ import Streamer from "../components/streamer-list/Streamer";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import { useState } from "react";
+import { SingleStreamerPageStyled } from "../styles/SingleStreamerStyled";
 
 const SingleStreamerPage = () => {
   const { id } = useParams();
@@ -33,10 +34,13 @@ const SingleStreamerPage = () => {
 
   if (data) {
     return (
-      <>
+      <SingleStreamerPageStyled>
         {isImageLoading ? <Loading /> : null}
-        <Streamer streamer={data} isSingle={true} loadImage={loadImage} />;
-      </>
+        <div className="single-streamer-container">
+          <Streamer streamer={data} isSingle={true} loadImage={loadImage} />
+        </div>
+        <p className="single-streamer-desc">{data.desc}</p>
+      </SingleStreamerPageStyled>
     );
   }
 };
