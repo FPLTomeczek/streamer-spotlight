@@ -1,4 +1,1 @@
-export const noWhitespaceRegex = new RegExp(
-  /^[A-Za-z0-9]+(?:\s+[A-Za-z0-9]+)*$/,
-  "g"
-);
+export const noWhitespaceRegex = new RegExp(/^[\S]+(?:\s+[\S]+)*$/, "g");
